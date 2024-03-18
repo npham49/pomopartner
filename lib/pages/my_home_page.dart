@@ -86,18 +86,40 @@ class _MyHomePageState extends State<MyHomePage> {
                 width: MediaQuery.of(context).size.width * 0.45,
                 height: MediaQuery.of(context).size.width * 0.45,
                 child: Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Text(
-                      '$_counter\n$_remainingTime',
-                      style: const TextStyle(
-                        color: Color(0xFFB3AC74),
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold,
+                    child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.40,
+                      height: MediaQuery.of(context).size.width * 0.40,
+                      child: Stack(
+                        children: <Widget>[
+                          Center(
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.35,
+                              height: MediaQuery.of(context).size.width * 0.35,
+                              margin: const EdgeInsets.all(4),
+                              child: CircularProgressIndicator(
+                                strokeWidth: 13,
+                                value: _counter / 60,
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                    Theme.of(context).colorScheme.primary),
+                                backgroundColor: const Color(0xFF32292C),
+                              ),
+                            ),
+                          ),
+                          Center(
+                              child: Text("$_counter\n$_remainingTime",
+                                  style: const TextStyle(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFFB3AC74)))),
+                        ],
                       ),
                     ),
-                  ),
-                ),
+                  ],
+                )),
               ),
             ),
           ],
