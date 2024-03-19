@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pomopartner/widgets/pomodoro_icon.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -19,20 +20,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-  int _remainingTime = 60;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-      _remainingTime = 60 - _counter;
-    });
-  }
+  var timers = [45, 50, 35];
 
   @override
   Widget build(BuildContext context) {
@@ -55,78 +43,17 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.start,
+        child: GridView.count(
+          crossAxisCount: 2,
+          padding: const EdgeInsets.all(8.0),
           children: <Widget>[
-            Container(
-              decoration: const BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black12,
-                    blurStyle: BlurStyle.outer,
-                    spreadRadius: 1,
-                    blurRadius: 15,
-                  ),
-                ],
-              ),
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.45,
-                height: MediaQuery.of(context).size.width * 0.45,
-                child: Card(
-                    child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.40,
-                      height: MediaQuery.of(context).size.width * 0.40,
-                      child: Stack(
-                        children: <Widget>[
-                          Center(
-                            child: Container(
-                              width: MediaQuery.of(context).size.width * 0.35,
-                              height: MediaQuery.of(context).size.width * 0.35,
-                              margin: const EdgeInsets.all(4),
-                              child: CircularProgressIndicator(
-                                strokeWidth: 13,
-                                value: _counter / 60,
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                    Theme.of(context).colorScheme.primary),
-                                backgroundColor: const Color(0xFF32292C),
-                              ),
-                            ),
-                          ),
-                          Center(
-                              child: Text("$_counter\n$_remainingTime",
-                                  style: const TextStyle(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xFFB3AC74)))),
-                        ],
-                      ),
-                    ),
-                  ],
-                )),
-              ),
-            ),
+            for (var time in timers) PomodoroIcon(time: time),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        // ignore: avoid_print
+        onPressed: () => print('Increment'),
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
