@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:pomopartner/widgets/pomodoro_icon.dart';
+
+import 'package:pomopartner/mobx/timer.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -20,7 +23,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var timers = [45, 50, 35];
+  final Timer timers = Timer();
 
   @override
   Widget build(BuildContext context) {
@@ -43,17 +46,19 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: GridView.count(
-          crossAxisCount: 2,
-          padding: const EdgeInsets.all(8.0),
-          children: <Widget>[
-            for (var time in timers) PomodoroIcon(time: time),
-          ],
+        child: Observer(
+          builder: (_) => GridView.count(
+            crossAxisCount: 2,
+            padding: const EdgeInsets.all(8.0),
+            children: <Widget>[
+              for (var time in timers.timers) PomodoroIcon(time: time),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
         // ignore: avoid_print
-        onPressed: () => print('Increment'),
+        onPressed: () => timers.addTimer(25),
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
