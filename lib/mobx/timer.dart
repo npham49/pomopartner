@@ -9,7 +9,7 @@ class Timer = TimerBase with _$Timer;
 // The store-class
 abstract class TimerBase with Store {
   @observable
-  ObservableList<int> timers = ObservableList<int>.of([25, 5, 15]);
+  ObservableList<int> timers = ObservableList<int>.of([]);
 
   @action
   void addTimer(int value) {
