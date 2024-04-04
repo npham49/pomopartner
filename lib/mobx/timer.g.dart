@@ -12,13 +12,13 @@ mixin _$Timer on TimerBase, Store {
   late final _$timersAtom = Atom(name: 'TimerBase.timers', context: context);
 
   @override
-  ObservableList<int> get timers {
+  ObservableList<TimerLocal> get timers {
     _$timersAtom.reportRead();
     return super.timers;
   }
 
   @override
-  set timers(ObservableList<int> value) {
+  set timers(ObservableList<TimerLocal> value) {
     _$timersAtom.reportWrite(value, super.timers, () {
       super.timers = value;
     });
@@ -28,7 +28,7 @@ mixin _$Timer on TimerBase, Store {
       ActionController(name: 'TimerBase', context: context);
 
   @override
-  void addTimer(int value) {
+  void addTimer(TimerLocal value) {
     final _$actionInfo =
         _$TimerBaseActionController.startAction(name: 'TimerBase.addTimer');
     try {

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:pomopartner/main.dart';
 import 'package:pomopartner/widgets/pomodoro_icon.dart';
 // import 'package:provider/provider.dart';
@@ -35,10 +34,9 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Observer(
-          builder: (_) => GridView.count(
-            crossAxisCount: 2,
-            padding: const EdgeInsets.all(8.0),
+        child: Padding(
+          padding: const EdgeInsets.all(3.0),
+          child: Column(
             children: <Widget>[
               for (var time in timers.timers) PomodoroIcon(time: time),
             ],

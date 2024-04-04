@@ -4,6 +4,7 @@ import 'package:pomopartner/main.dart';
 // import 'package:mobx/mobx.dart';
 import 'package:pomopartner/mobx/timer.dart';
 // import 'package:provider/provider.dart';
+import 'package:pomopartner/models/timer_local.dart';
 
 class NewTimerPage extends StatefulWidget {
   const NewTimerPage({super.key});
@@ -17,6 +18,7 @@ class _NewTimerPageState extends State<NewTimerPage> {
 
   int _minutes = 0;
   int _break = 60;
+  String _name = "";
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,19 @@ class _NewTimerPageState extends State<NewTimerPage> {
           padding: const EdgeInsets.all(15.0),
           child: Column(
             children: [
+              TextField(
+                keyboardType: TextInputType.text,
+                decoration: const InputDecoration(
+                  labelText: "Name",
+                  border: OutlineInputBorder(),
+                  hintText: 'Name of the timer',
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    _name = value;
+                  });
+                },
+              ),
               TextField(
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
@@ -64,7 +79,7 @@ class _NewTimerPageState extends State<NewTimerPage> {
           width: MediaQuery.of(context).size.width * 0.45,
           child: FloatingActionButton(
             onPressed: () {
-              timers.addTimer(_minutes);
+              timers.addTimer(TimerLocal(_name, _minutes));
               Navigator.pop(context);
             },
             child: const Text("Add Timer"),

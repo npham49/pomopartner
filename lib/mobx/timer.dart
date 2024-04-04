@@ -1,4 +1,5 @@
 import 'package:mobx/mobx.dart';
+import 'package:pomopartner/models/timer_local.dart';
 
 // Include generated file
 part 'timer.g.dart';
@@ -9,10 +10,10 @@ class Timer = TimerBase with _$Timer;
 // The store-class
 abstract class TimerBase with Store {
   @observable
-  ObservableList<int> timers = ObservableList<int>.of([]);
+  ObservableList<TimerLocal> timers = ObservableList<TimerLocal>.of([]);
 
   @action
-  void addTimer(int value) {
+  void addTimer(TimerLocal value) {
     timers.add(value);
   }
 
