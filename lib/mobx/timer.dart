@@ -7,6 +7,8 @@ part 'timer.g.dart';
 // This is the class used by rest of your codebase
 class Timer = TimerBase with _$Timer;
 
+// TODO: Observable not working, need to investigate, items only showing up after hot realoading.
+
 // The store-class
 abstract class TimerBase with Store {
   @observable
