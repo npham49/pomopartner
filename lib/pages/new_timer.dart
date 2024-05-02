@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pomopartner/main.dart';
-// import 'package:flutter_mobx/flutter_mobx.dart';
-// import 'package:mobx/mobx.dart';
-import 'package:pomopartner/mobx/timer.dart';
-// import 'package:provider/provider.dart';
 import 'package:pomopartner/models/timer_local.dart';
 
 class NewTimerPage extends StatefulWidget {
@@ -14,7 +9,7 @@ class NewTimerPage extends StatefulWidget {
 }
 
 class _NewTimerPageState extends State<NewTimerPage> {
-  final timers = getIt<Timer>();
+  List<TimerLocal> timers = [TimerLocal("Work", 25), TimerLocal("Break", 5)];
 
   int _minutes = 0;
   int _break = 60;
@@ -33,10 +28,10 @@ class _NewTimerPageState extends State<NewTimerPage> {
             children: [
               TextField(
                 keyboardType: TextInputType.text,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: "Name",
-                  border: OutlineInputBorder(),
-                  hintText: 'Name of the timer',
+                  border: const OutlineInputBorder(),
+                  hintText: 'Name of the timer: $_name',
                 ),
                 onChanged: (value) {
                   setState(() {
@@ -79,7 +74,6 @@ class _NewTimerPageState extends State<NewTimerPage> {
           width: MediaQuery.of(context).size.width * 0.45,
           child: FloatingActionButton(
             onPressed: () {
-              timers.addTimer(TimerLocal(_name, _minutes));
               Navigator.pop(context);
             },
             child: const Text("Add Timer"),

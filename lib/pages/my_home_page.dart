@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pomopartner/main.dart';
+import 'package:pomopartner/models/timer_local.dart';
 import 'package:pomopartner/widgets/pomodoro_icon.dart';
-// import 'package:provider/provider.dart';
-
-import 'package:pomopartner/mobx/timer.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -24,7 +21,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final timers = getIt<Timer>();
+  List<TimerLocal> timers = [TimerLocal("Work", 25), TimerLocal("Break", 5)];
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
           padding: const EdgeInsets.all(3.0),
           child: Column(
             children: <Widget>[
-              for (var time in timers.timers) PomodoroIcon(time: time),
+              for (var time in timers) PomodoroIcon(time: time),
             ],
           ),
         ),
