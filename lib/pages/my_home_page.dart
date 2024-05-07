@@ -21,7 +21,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<TimerLocal> timers = [TimerLocal("Work", 25), TimerLocal("Break", 5)];
+  List<TimerLocal> timers = [
+    TimerLocal(1, "Work", 25),
+    TimerLocal(2, "Break", 5)
+  ];
 
   @override
   Widget build(BuildContext context) {

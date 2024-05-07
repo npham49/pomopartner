@@ -9,7 +9,10 @@ class NewTimerPage extends StatefulWidget {
 }
 
 class _NewTimerPageState extends State<NewTimerPage> {
-  List<TimerLocal> timers = [TimerLocal("Work", 25), TimerLocal("Break", 5)];
+  List<TimerLocal> timers = [
+    TimerLocal(1, "Work", 25),
+    TimerLocal(2, "Break", 5)
+  ];
 
   int _minutes = 0;
   int _break = 60;
